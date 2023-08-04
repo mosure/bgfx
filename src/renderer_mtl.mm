@@ -2823,6 +2823,7 @@ namespace bgfx { namespace mtl
 			const bool computeWrite = 0 != (_flags&BGFX_TEXTURE_COMPUTE_WRITE);
 			const bool renderTarget = 0 != (_flags&BGFX_TEXTURE_RT_MASK);
 			const bool srgb         = 0 != (_flags&BGFX_TEXTURE_SRGB);
+			const bool read_back 	= 0 != (_flags&BGFX_TEXTURE_READ_BACK);
 
 			BX_TRACE("Texture %3d: %s (requested: %s), layers %d, %dx%d%s RT[%c], WO[%c], CW[%c], sRGB[%c]"
 				, this - s_renderMtl->m_textures
@@ -2864,6 +2865,10 @@ namespace bgfx { namespace mtl
 			desc.mipmapLevelCount = ti.numMips;
 			desc.sampleCount      = 1;
 			desc.arrayLength      = ti.numLayers;
+
+			if (read_back) {
+				desc.allowGPUOptimizedContents = false;
+			}
 
 			if (s_renderMtl->m_iOS9Runtime
 			||  s_renderMtl->m_macOS11Runtime)
