@@ -2866,10 +2866,6 @@ namespace bgfx { namespace mtl
 			desc.sampleCount      = 1;
 			desc.arrayLength      = ti.numLayers;
 
-			if (read_back) {
-				desc.allowGPUOptimizedContents = false;
-			}
-
 			if (s_renderMtl->m_iOS9Runtime
 			||  s_renderMtl->m_macOS11Runtime)
 			{
@@ -2923,6 +2919,11 @@ namespace bgfx { namespace mtl
 			if (convert)
 			{
 				temp = (uint8_t*)BX_ALLOC(g_allocator, ti.width*ti.height*4);
+			}
+
+			if (read_back) {
+				desc.allowGPUOptimizedContents = false;
+				desc.storageMode = (MTLStorageMode)1; // MTLStorageModeManaged
 			}
 
 			for (uint16_t side = 0; side < numSides; ++side)
