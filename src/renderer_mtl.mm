@@ -2922,9 +2922,9 @@ namespace bgfx { namespace mtl
 			}
 
 			if (read_back) {
-				desc.allowGPUOptimizedContents = false;
-				desc.storageMode = (MTLStorageMode)0; // MTLStorageModeShared
+				desc.storageMode = (MTLStorageMode)1; // MTLStorageModeManaged
 			}
+			desc.allowGPUOptimizedContents = false;
 
 			for (uint16_t side = 0; side < numSides; ++side)
 			{
