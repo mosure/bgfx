@@ -2964,6 +2964,12 @@ BX_STATIC_ASSERT(BX_COUNTOF(s_accessNames) == Access::Count, "Invalid s_accessNa
 				temp = (uint8_t*)bx::alloc(g_allocator, ti.width*ti.height*4);
 			}
 
+			const bool read_back 	= 0 != (_flags&BGFX_TEXTURE_READ_BACK);
+			if (read_back) {
+				desc.allowGPUOptimizedContents = false;
+				desc.storageMode = (MTLStorageMode)1; // MTLStorageModeManaged
+			}
+
 			for (uint16_t side = 0; side < numSides; ++side)
 			{
 				uint32_t width  = ti.width;
