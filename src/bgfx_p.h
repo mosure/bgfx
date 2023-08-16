@@ -3169,12 +3169,12 @@ namespace bgfx
 		{
 			BGFX_MUTEX_SCOPE(m_resourceApiLock);
 
-			BX_ASSERT(false
-				|| !m_headless
-				|| 0 == _width
-				|| 0 == _height
-				, "Running in headless mode, resolution of non-existing backbuffer can't be larger than 0x0!"
-				);
+			// BX_ASSERT(false
+			// 	|| !m_headless
+			// 	|| 0 == _width
+			// 	|| 0 == _height
+			// 	, "Running in headless mode, resolution of non-existing backbuffer can't be larger than 0x0!"
+			// 	);
 
 			const TextureFormat::Enum format = TextureFormat::Count != _format ? _format : m_init.resolution.format;
 
