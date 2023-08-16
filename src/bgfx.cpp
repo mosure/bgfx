@@ -1910,7 +1910,7 @@ namespace bgfx
 		&&  0 != _init.resolution.height)
 		{
 			BX_TRACE("Initializing headless mode, resolution of non-existing backbuffer can't be larger than 0x0!");
-			return false;
+			//return false;
 		}
 
 		m_init = _init;
